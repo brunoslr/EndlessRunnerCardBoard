@@ -5,6 +5,16 @@ namespace UnitySampleAssets._2D
 {
     public class EnemyBehavior : MonoBehaviour
     {
+		private const string TWITTER_ADDRESS = "http://twitter.com/intent/tweet";
+		private const string TWEET_LANGUAGE = "en"; 
+		
+		void ShareToTwitter (string textToDisplay)
+		{
+			Application.OpenURL(TWITTER_ADDRESS +
+			                    "?text=" + WWW.EscapeURL(textToDisplay + (Time.time).ToString("#.##") + "#EndlessRunnerHighScore") +
+			                    "&amp;lang=" + WWW.EscapeURL(TWEET_LANGUAGE));
+		}
+
         void FixedUpdate()
         {
         	float rate = 0.025f;
@@ -19,8 +29,8 @@ namespace UnitySampleAssets._2D
 		{
 			if(other.tag == "Player")
 			{
-				Debug.Log("HIT");
-				//Application.Quit();
+				ShareToTwitter("I JUST POSTED MY HIGH SCORE ON TWITTER: ");
+				Application.Quit();
 			}		
 		}
     }
