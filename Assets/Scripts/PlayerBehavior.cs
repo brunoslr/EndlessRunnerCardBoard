@@ -11,17 +11,28 @@ namespace UnitySampleAssets._2D
   		public float speed = 1;
         private PlatformerCharacter2D character;
         private bool jump;
+        public bool magnetDetectionEnabled = true;
 
         private void Awake()
         {
             character = GetComponent<PlatformerCharacter2D>();
         }
 
+        void Start()
+        {
+            CardboardMagnetSensor.SetEnabled(magnetDetectionEnabled);
+            // Disable screen dimming:
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        }
+
         void Update()
         {
-            if (!jump)
-                // Read the jump input in Update so button presses aren't missed.
-                jump = CrossPlatformInputManager.GetButtonDown("Jump");
+            if (!magnetDetectionEnabled) return;
+            if (CardboardMagnetSensor.CheckIfWasClicked() && !jump)
+            {
+                jump = true;
+                CardboardMagnetSensor.ResetClick();
+            }
         }
 
         private void FixedUpdate()

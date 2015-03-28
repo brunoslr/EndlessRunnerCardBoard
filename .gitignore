@@ -57,3 +57,5 @@ ehthumbs.db
 Thumbs.db
 *.orig
 
+Assets/Scripts/CardboardButton.cs
+Assets/Scripts/CardboardButton.cs.meta
