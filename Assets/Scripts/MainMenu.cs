@@ -1,25 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public class MainMenu : MonoBehaviour {
 	public bool isQuitButton = false;
-	void OnMouseEnter()
-	{
-		GetComponent<Renderer>().material.color = Color.blue;
-	}
+	public bool magnetDetectionEnabled = true;
+	private GameObject Button;
 
-	void OnMouseExit()
+	void Start()
 	{
-		GetComponent<Renderer>().material.color = Color.white;
+		CardboardMagnetSensor.SetEnabled(magnetDetectionEnabled);
+		// Disable screen dimming:
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
-
-	void OnMouseUp()
+	
+	void Update()
 	{
-		if (isQuitButton) {
-			Application.Quit ();
-		} else {
-			Application.LoadLevel ("Base");
+		if (!magnetDetectionEnabled) return;
+		if (CardboardMagnetSensor.CheckIfWasClicked())
+		{
+			if (isQuitButton) {
+				Application.Quit ();
+				
+			}
+
+			CardboardMagnetSensor.ResetClick();
 		}
 	}
+
+	public void StartGame()
+	{
+	
+		Application.LoadLevel ("MainScene");
+
+	}
+
+	public void UpdateQuitFlag()
+	{
+		isQuitButton = true;
+	}
+
+	public void QuitGame()
+	{
+		Application.Quit ();
+	}
+
 }

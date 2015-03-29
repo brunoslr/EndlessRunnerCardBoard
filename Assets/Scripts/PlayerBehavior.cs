@@ -38,7 +38,6 @@ namespace UnitySampleAssets._2D
         private void FixedUpdate()
         {
             character.Move(speed * Time.deltaTime, false, jump);
-			Debug.Log(jump);
             jump = false;
         }
 
