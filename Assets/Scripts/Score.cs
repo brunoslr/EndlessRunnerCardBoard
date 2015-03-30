@@ -14,7 +14,8 @@ public class Score : MonoBehaviour
 
 	void Update () 
     {
-        time = Time.time;    
+
+		time = Time.timeSinceLevelLoad;    
         timeText.text = "Score: " + time.ToString("#.##");  
 	}
 }

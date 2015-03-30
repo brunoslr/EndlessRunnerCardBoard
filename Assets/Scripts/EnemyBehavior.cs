@@ -7,11 +7,12 @@ namespace UnitySampleAssets._2D
     {
 		private const string TWITTER_ADDRESS = "http://twitter.com/intent/tweet";
 		private const string TWEET_LANGUAGE = "en"; 
+		public AudioClip clip;
 		
 		void ShareToTwitter (string textToDisplay)
 		{
 			Application.OpenURL(TWITTER_ADDRESS +
-			                    "?text=" + WWW.EscapeURL(textToDisplay + (Time.time).ToString("#.##") + "#EndlessRunnerHighScore") +
+			                    "?text=" + WWW.EscapeURL(textToDisplay + (Time.timeSinceLevelLoad).ToString("#.##") + "#EndlessRunnerHighScore") +
 			                    "&amp;lang=" + WWW.EscapeURL(TWEET_LANGUAGE));
 		}
 
@@ -27,6 +28,8 @@ namespace UnitySampleAssets._2D
 
 		void OnTriggerEnter2D(Collider2D other)
 		{
+			audio.Play();
+			
 			if(other.tag == "Player")
 			{
 				ShareToTwitter("I JUST POSTED MY HIGH SCORE ON TWITTER: ");

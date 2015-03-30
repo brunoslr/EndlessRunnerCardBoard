@@ -7,8 +7,6 @@ namespace UnitySampleAssets._2D
     {
         public float speed = 0;
 		public Transform player;
-        public float positionY;
-        public float positionZ;
         private Vector2 textureOffset;
 		
         void Start()
@@ -18,11 +16,9 @@ namespace UnitySampleAssets._2D
 		
         void Update() 
 		{
-
-       		speed = player.GetComponent<PlayerBehavior>().getSpeed();
+			speed = player.GetComponent<PlayerBehavior>().getSpeed();
             textureOffset.x = (textureOffset.x - (speed/100f));
-            renderer.material.mainTextureOffset = textureOffset;
-            	
+            renderer.material.mainTextureOffset = textureOffset;	
 		}
 	}
 }

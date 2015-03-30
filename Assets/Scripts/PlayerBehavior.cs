@@ -4,7 +4,6 @@ using UnitySampleAssets.CrossPlatformInput;
 
 namespace UnitySampleAssets._2D
 {
-
     [RequireComponent(typeof(PlatformerCharacter2D))]
     public class PlayerBehavior : MonoBehaviour
     {
@@ -12,6 +11,10 @@ namespace UnitySampleAssets._2D
         private PlatformerCharacter2D character;
         private bool jump;
         public bool magnetDetectionEnabled = true;
+		private float timeGap;
+		public float timeIntervalForSpeedIncrement;
+		public float speedIncrement;
+		private GameObject cam;
 
         private void Awake()
         {
@@ -20,6 +23,8 @@ namespace UnitySampleAssets._2D
 
         void Start()
         {
+			timeGap = Time.timeSinceLevelLoad;
+			cam = GameObject.Find("Main Camera");
             CardboardMagnetSensor.SetEnabled(magnetDetectionEnabled);
             // Disable screen dimming:
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -33,6 +38,14 @@ namespace UnitySampleAssets._2D
                 jump = true;
                 CardboardMagnetSensor.ResetClick();
             }
+
+			if((Time.timeSinceLevelLoad - timeGap) > timeIntervalForSpeedIncrement && speed <= 6.0f)
+			{
+				speed += speedIncrement;
+				timeGap = Time.timeSinceLevelLoad;
+				if(cam.GetComponent<AudioSource>().audio.pitch < 1.1f)
+					cam.GetComponent<AudioSource>().audio.pitch += 0.03f;
+			}
         }
 
         private void FixedUpdate()

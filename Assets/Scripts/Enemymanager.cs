@@ -6,8 +6,8 @@ public class Enemymanager : MonoBehaviour
 	public GameObject spawnEnemy;
 	private GameObject currentEnemy;
 
-	void Update () {
-	
+	void Update () 
+	{
 		if(currentEnemy == null)
 		{
 			currentEnemy = Instantiate(spawnEnemy) as GameObject;
