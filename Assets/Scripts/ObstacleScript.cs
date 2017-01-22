@@ -21,7 +21,7 @@ namespace UnitySampleAssets._2D
 		void Update () 
 		{
 			speed = player.GetComponent<PlayerBehavior>().getSpeed();	
-			rigidbody2D.velocity = Vector3.left*speed*1000;
+			GetComponent<Rigidbody2D>().velocity = Vector3.left*speed*1000;
 		}
 		
 		void OnTriggerEnter2D(Collider2D coll)

@@ -38,7 +38,7 @@ namespace UnitySampleAssets._2D
             anim.SetBool("Ground", grounded);
 
             // Set the vertical animation
-            anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
+            anim.SetFloat("vSpeed", GetComponent<Rigidbody2D>().velocity.y);
         }
 
 
@@ -63,7 +63,7 @@ namespace UnitySampleAssets._2D
                 // Add a vertical force to the player.
                 grounded = false;
                 anim.SetBool("Ground", false);
-                rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
             }
         }
 	}

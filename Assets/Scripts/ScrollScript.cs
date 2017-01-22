@@ -18,7 +18,7 @@ namespace UnitySampleAssets._2D
 		{
 			speed = player.GetComponent<PlayerBehavior>().getSpeed();
             textureOffset.x = (textureOffset.x - (speed/100f));
-            renderer.material.mainTextureOffset = textureOffset;	
+            GetComponent<Renderer>().material.mainTextureOffset = textureOffset;	
 		}
 	}
 }

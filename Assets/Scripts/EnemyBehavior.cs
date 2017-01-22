@@ -28,7 +28,7 @@ namespace UnitySampleAssets._2D
 
 		void OnTriggerEnter2D(Collider2D other)
 		{
-			audio.Play();
+			GetComponent<AudioSource>().Play();
 			
 			if(other.tag == "Player")
 			{

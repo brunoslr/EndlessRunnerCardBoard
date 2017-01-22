@@ -43,8 +43,8 @@ namespace UnitySampleAssets._2D
 			{
 				speed += speedIncrement;
 				timeGap = Time.timeSinceLevelLoad;
-				if(cam.GetComponent<AudioSource>().audio.pitch < 1.1f)
-					cam.GetComponent<AudioSource>().audio.pitch += 0.03f;
+				if(cam.GetComponent<AudioSource>().GetComponent<AudioSource>().pitch < 1.1f)
+					cam.GetComponent<AudioSource>().GetComponent<AudioSource>().pitch += 0.03f;
 			}
         }
 
